@@ -1,9 +1,9 @@
 
 
-const myCourses = () => {
+const MyCourses = () => {
   return (
     <div>myCourses</div>
   )
 }
 
-export default myCourses
+export default MyCourses
