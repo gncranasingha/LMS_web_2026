@@ -1,4 +1,5 @@
 import Companies from "../../components/student/Companies"
+import CoursesSection from "../../components/student/CoursesSection"
 import Hero from "../../components/student/Hero"
 
 
@@ -7,6 +8,7 @@ const Home = () => {
     <div className="flex flex-col items-center space-y-7" >
       <Hero/>
       <Companies/>
+      <CoursesSection/>
     </div>
   )
 }
