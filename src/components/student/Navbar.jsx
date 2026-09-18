@@ -26,11 +26,18 @@ const Navbar = () => {
 
         {/*for phone screen */}
         <div className="md:hidden flex items-center gap-2 sm:gap-5 text-gray-500" >
-            <div>
-                <button>Become Educator</button>
+            <div className="" >
+               { user &&
+                <>
+                <button  >Become Educator</button>
                 | <Link to='/my-enrollments' >My Enrollments</Link>
+                </>
+                }
             </div>
-            <button><img src={assets.user_icon} alt="" /></button>
+            {
+                user ? <UserButton/> : <button onClick={()=> openSignIn()} ><img src={assets.user_icon} alt="" /></button>
+            }
+            
         </div>
     </div>
   )
