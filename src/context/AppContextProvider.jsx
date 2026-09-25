@@ -8,6 +8,7 @@ export const AppContextProvider = ({ children }) => {
 
   const navigate = useNavigate()
   const [allCourses] = useState(dummyCourses)
+  const [isEducator, setIsEducator] = useState(true)
 
   const calculateRating = (course)=>{
     if(course.courseRatings.length === 0){
@@ -24,7 +25,9 @@ export const AppContextProvider = ({ children }) => {
     currency,
     allCourses,
     navigate,
-    calculateRating
+    calculateRating,
+    isEducator,
+    setIsEducator
   }
 
   return (

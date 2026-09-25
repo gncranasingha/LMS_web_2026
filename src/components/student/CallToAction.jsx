@@ -2,7 +2,7 @@
 
 const CallToAction = () => {
   return (
-    <div>CallToAction</div>
+    <div></div>
   )
 }
 
