@@ -2,7 +2,11 @@
 
 const Player = () => {
   return (
-    <div>Player</div>
+    <>
+    <div>
+      
+    </div>
+    </>
   )
 }
 
