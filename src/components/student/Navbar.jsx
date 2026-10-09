@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { assets } from "../../assets/assets"
-import { useClerk, UserButton, useUser } from "@clerk/react"
+import { useClerk, UserButton, useUser } from "@clerk/clerk-react"
 import { useContext } from "react"
 import { AppContext } from "../../context/AppContext"
 const Navbar = () => {
