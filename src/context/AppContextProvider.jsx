@@ -6,14 +6,13 @@ import humanizeDuration from "humanize-duration";
 
 export const AppContextProvider = ({ children }) => {
   const currency = import.meta.env.VITE_CURRENCY;
-
   const navigate = useNavigate();
 
   const [allCourses] = useState(dummyCourses);
   const [isEducator, setIsEducator] = useState(true);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
-  // Calculate course rating
+  // Calculate rating
   const calculateRating = (course) => {
     if (!course.courseRatings || course.courseRatings.length === 0) {
       return 0;
@@ -26,11 +25,6 @@ export const AppContextProvider = ({ children }) => {
     });
 
     return totalRating / course.courseRatings.length;
-  };
-
-  // Fetch user enrolled courses
-  const fetchUserEnrolledCourses = async () => {
-    setEnrolledCourses(dummyCourses);
   };
 
   // Calculate course duration
@@ -48,6 +42,39 @@ export const AppContextProvider = ({ children }) => {
     });
   };
 
+  // Student count
+  const calculateStudentCount = (course) => {
+    return course.enrolledStudents?.length || 0;
+  };
+
+  // Chapter count
+  const calculateChapterCount = (course) => {
+    return course.courseContent?.length || 0;
+  };
+
+  // Lecture count
+  const calculateLectureCount = (course) => {
+    return (
+      course.courseContent?.reduce(
+        (total, chapter) =>
+          total + (chapter.chapterContent?.length || 0),
+        0
+      ) || 0
+    );
+  };
+
+  // Discounted price
+  const calculateDiscountedPrice = (course) => {
+    return (
+      course.coursePrice -
+      (course.coursePrice * (course.discount || 0)) / 100
+    );
+  };
+
+  const fetchUserEnrolledCourses = async () => {
+    setEnrolledCourses(dummyCourses);
+  };
+
   useEffect(() => {
     fetchUserEnrolledCourses();
   }, []);
@@ -56,8 +83,14 @@ export const AppContextProvider = ({ children }) => {
     currency,
     allCourses,
     navigate,
+
     calculateRating,
     calculateCourseDuration,
+    calculateStudentCount,
+    calculateChapterCount,
+    calculateLectureCount,
+    calculateDiscountedPrice,
+
     isEducator,
     setIsEducator,
     enrolledCourses,
@@ -70,3 +103,4 @@ export const AppContextProvider = ({ children }) => {
     </AppContext.Provider>
   );
 };
+
